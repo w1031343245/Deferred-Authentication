@@ -1,0 +1,26 @@
+interface:
+  display_name: "Deferred Authentication"
+  short_description: "Delay login until useful unauthenticated work is done."
+  default_prompt: "Use deferred authentication for this task: finish as much as possible before asking me to log in, and produce the best available artifact if authentication is unavailable."
+compatibility:
+  canonical_format: "agent-skills"
+  adapter_targets:
+    - "openai"
+    - "claude"
+    - "generic"
+    - "vscode"
+  activation:
+    mode: "manual"
+    paths: []
+  execution:
+    context: "inline"
+    shell: "powershell"
+  trust:
+    source_tier: "local"
+    remote_inline_execution: "forbid"
+    remote_metadata_policy: "allow-metadata-only"
+  degradation:
+    openai: "metadata-adapter"
+    claude: "neutral-source-plus-adapter"
+    generic: "neutral-source"
+    vscode: "agent-skills-source-with-vscode-notes"
