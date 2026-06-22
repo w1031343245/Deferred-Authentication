@@ -30,6 +30,12 @@ Need to push to GitHub
 
 Deferred Authentication prevents that drift. If a capability blocks repeatedly, the agent should preserve progress with a resumable artifact: a patch, diff, bundle, local build, preview, JSON payload, draft, archive, or checklist.
 
+## Temporary Change Strategy
+
+Different blockers need different temporary changes. A blocked `git push` should become a patch or bundle; a blocked deployment should become a local build or preview package; a blocked API write should become a payload preview; a blocked CMS write should become Markdown or HTML.
+
+The rule is that temporary changes must be reversible, visibly labeled, and free of privileged side effects. They should keep the original goal moving without pretending that a final authenticated action already happened.
+
 ## Core Behavior
 
 The skill guides the agent to:
@@ -57,4 +63,4 @@ The skill guides the agent to:
 - `SKILL.md`: main skill instructions.
 - `agents/interface.yaml`: skill interface and adapter compatibility metadata.
 - `manifest.json`: package metadata.
-- `references/fallback-options.md`: extended fallback examples.
+- `references/fallback-options.md`: fallback and temporary-change pattern library.

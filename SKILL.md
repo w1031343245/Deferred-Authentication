@@ -7,11 +7,11 @@ description: Use when an agent encounters login, OAuth, API key, cookie, session
 
 ## Overview
 
-Authentication is not the goal; it is a capability. Continue useful work first, defer identity-dependent actions until they are unavoidable, and produce the best available artifact when authentication cannot complete.
+Authentication is not the goal; it is a capability. Work first, defer identity-dependent actions, and produce the best available artifact when authentication cannot complete.
 
 ## Core Rule
 
-Ask "What capability is needed to complete the user's goal?" before asking "How do I log in?"
+Ask "What capability is needed?" before asking "How do I log in?"
 
 Priority:
 
@@ -35,7 +35,7 @@ Goal -> needed capability -> low-privilege path?
       no: retry auth once if there is a clear fix, then pause for the user
 ```
 
-Do not pause at the first login screen if the core task can still move forward.
+Do not pause at the first login screen if work can continue.
 
 ## Retry
 
@@ -45,9 +45,17 @@ Never cycle through Cookie, OAuth, API key, browser session, refresh token, diff
 
 ## Fallbacks
 
-Search for a lower-privilege path before requesting login. Examples: preview deploy instead of production deploy, patch instead of GitHub publish, Markdown instead of Notion write, JSON payload instead of Jira create, draft/preview instead of social post, local archive instead of cloud upload.
+Before requesting login, prefer preview deploy, patch, Markdown, JSON payload, draft, local archive, or proposed diff.
 
-For a larger fallback table, use [fallback-options.md](references/fallback-options.md).
+For fallback patterns, use [fallback-options.md](references/fallback-options.md).
+
+## Temporary Change Guard
+
+Temporary changes must be reversible, labeled, free of privileged side effects, and useful to the original goal.
+
+Allowed: local files, patches, previews, static exports, draft payloads, manifests, checklists.
+
+Forbidden: production changes, real user-data mutation, security bypasses, unlabeled fallbacks, or treating previews as completed publishes.
 
 ## Pause Protocol
 
